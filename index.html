@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barber & Co — Arte do Corte Perfeito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+
+<link rel="stylesheet" href="/assets/css/global.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Barber<span>&</span>Co</a>
+      <ul class="nav-links">
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#barbers">Barbeiros</a></li>
+        <li><a href="#testimonials">Avaliações</a></li>
+        <li><a href="#booking" class="nav-cta">Agendar</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" class="mobile-link">Serviços</a>
+  <a href="#barbers" class="mobile-link">Barbeiros</a>
+  <a href="#testimonials" class="mobile-link">Avaliações</a>
+  <a href="#booking" class="mobile-link mobile-cta">Agendar Agora</a>
+</div>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section id="hero">
+  <!-- Slide 1 -->
+  <div class="slide slide-1 active">
+    <div class="slide-content">
+      <div class="slide-badge">Lisboa · Desde 2016</div>
+      <h1 class="slide-title">A arte do<br><em>corte perfeito</em></h1>
+      <p class="slide-subtitle">Barbeiros especializados para o teu estilo</p>
+      <a href="#booking" class="btn-hero">
+        Agendar agora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 2 -->
+  <div class="slide slide-2">
+    <div class="slide-content">
+      <div class="slide-badge">Experiência Premium</div>
+      <h1 class="slide-title">Tradição com<br><em>estilo moderno</em></h1>
+      <p class="slide-subtitle">Experiência premium desde o primeiro corte</p>
+      <a href="#booking" class="btn-hero">
+        Agendar agora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 3 -->
+  <div class="slide slide-3">
+    <div class="slide-content">
+      <div class="slide-badge">Personalizado para si</div>
+      <h1 class="slide-title">O teu visual,<br><em>a nossa missão</em></h1>
+      <p class="slide-subtitle">Cortes personalizados para cada cliente</p>
+      <a href="#booking" class="btn-hero">
+        Agendar agora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 4 -->
+  <div class="slide slide-4">
+    <div class="slide-content">
+      <div class="slide-badge">Espaço Exclusivo</div>
+      <h1 class="slide-title">Ambiente<br><em>exclusivo</em></h1>
+      <p class="slide-subtitle">Relaxa enquanto te transformamos</p>
+      <a href="#booking" class="btn-hero">
+        Agendar agora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 5 -->
+  <div class="slide slide-5">
+    <div class="slide-content">
+      <div class="slide-badge">Agenda Online</div>
+      <h1 class="slide-title">Reserva o<br><em>teu momento</em></h1>
+      <p class="slide-subtitle">Agenda online em menos de 1 minuto</p>
+      <a href="#booking" class="btn-hero">
+        Agendar agora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Arrows -->
+  <button class="hero-arrow hero-prev" id="heroPrev" aria-label="Anterior">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="hero-arrow hero-next" id="heroNext" aria-label="Próximo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="hero-controls" id="heroDots">
+    <div class="hero-dot active" data-index="0"></div>
+    <div class="hero-dot" data-index="1"></div>
+    <div class="hero-dot" data-index="2"></div>
+    <div class="hero-dot" data-index="3"></div>
+    <div class="hero-dot" data-index="4"></div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ STATS ═══════════════════════════════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number"><span class="counter" data-target="500">0</span><span class="stat-suffix">+</span></span>
+        <div class="stat-label">Clientes Satisfeitos</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <span class="stat-number"><span class="counter" data-target="4">0</span></span>
+        <div class="stat-label">Barbeiros Especialistas</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <span class="stat-number"><span class="counter" data-target="8">0</span></span>
+        <div class="stat-label">Anos de Experiência</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <span class="stat-number"><span class="counter" data-target="49" data-decimal="true">0</span><span class="stat-suffix">★</span></span>
+        <div class="stat-label">Avaliação Média</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SERVICES ═══════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="text-center">
+      <div class="divider">
+        <div class="divider-icon">✦</div>
+      </div>
+      <span class="section-label">O que oferecemos</span>
+      <h2 class="section-title reveal">Os nossos serviços</h2>
+      <p class="section-subtitle reveal">Cada serviço é realizado com atenção ao detalhe e produtos de alta qualidade para garantir o melhor resultado.</p>
+    </div>
+    <div class="services-grid">
+      <!-- Card 1 -->
+      <div class="service-card reveal">
+        <div class="service-inner">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="24" cy="24" r="18"/><path d="M16 24h16M24 16v16"/><circle cx="24" cy="24" r="4" fill="currentColor" opacity=".2"/>
+          </svg>
+          <div class="service-name">Corte Clássico</div>
+          <div class="service-desc">O clássico atemporal. Lavagem, corte e finalização perfeita para o dia-a-dia.</div>
+          <div class="service-price">€15 <span>/ sessão</span></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-inner">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M12 34c0-8 5-14 12-14s12 6 12 14"/><path d="M18 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M8 38c2-4 5-6 8-6M40 38c-2-4-5-6-8-6"/><path d="M14 38h20"/>
+          </svg>
+          <div class="service-name">Corte + Barba</div>
+          <div class="service-desc">A combinação perfeita. Corte personalizado e tratamento completo de barba.</div>
+          <div class="service-price">€25 <span>/ sessão</span></div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-inner">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 14h28M10 22h24M10 30h20M10 38h14"/>
+            <path d="M38 28l4 4-4 4" stroke-width="2"/>
+          </svg>
+          <div class="service-name">Degradê</div>
+          <div class="service-desc">Técnica de degradê com transição suave, do fade clássico ao skin fade.</div>
+          <div class="service-price">€18 <span>/ sessão</span></div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card reveal">
+        <div class="service-inner">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M14 22c0-5.5 4.5-10 10-10s10 4.5 10 10c0 4-2 7-5 9"/><path d="M19 31v7M29 31v7"/>
+            <path d="M15 38h18"/><path d="M24 32v6"/>
+          </svg>
+          <div class="service-name">Barba Completa</div>
+          <div class="service-desc">Aparar, definir e tratar a barba com produtos premium e toalha quente.</div>
+          <div class="service-price">€12 <span>/ sessão</span></div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-inner">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M24 10c-7.7 0-14 4.5-14 10 0 3 1.5 5.6 4 7.5L12 36h24l-2-8.5c2.5-1.9 4-4.5 4-7.5 0-5.5-6.3-10-14-10z"/>
+            <path d="M20 18c1-1 2.5-1.5 4-1.5s3 .5 4 1.5"/>
+          </svg>
+          <div class="service-name">Tratamento Capilar</div>
+          <div class="service-desc">Hidratação profunda e tratamento personalizado para cabelo e couro cabeludo.</div>
+          <div class="service-price">€30 <span>/ sessão</span></div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-inner">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <polygon points="24,6 28,18 40,18 31,26 34,38 24,31 14,38 17,26 8,18 20,18"/>
+          </svg>
+          <div class="service-name">Pacote Premium</div>
+          <div class="service-desc">Experiência completa: corte, barba, tratamento e massagem relaxante de 15 min.</div>
+          <div class="service-price">€45 <span>/ sessão</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ WHY ═══════════════════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">As nossas vantagens</span>
+      <h2 class="section-title reveal">Porquê escolher-nos</h2>
+      <p class="section-subtitle reveal">Comprometidos com a excelência em cada detalhe da tua experiência.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="20" cy="20" r="16"/><path d="M20 12v8l5 5"/>
+        </svg>
+        <div class="why-title">Sem espera</div>
+        <div class="why-text">Agenda online em segundos e chega na hora certa. Sem filas, sem esperas desnecessárias.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M20 4l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>
+        </svg>
+        <div class="why-title">Barbeiros certificados</div>
+        <div class="why-text">Profissionais com formação especializada, anos de experiência e paixão pelo ofício.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M8 30c0-8 5-14 12-14s12 6 12 14"/><path d="M14 16a6 6 0 1 1 12 0"/>
+          <path d="M20 22v4"/><path d="M17 26h6"/>
+        </svg>
+        <div class="why-title">Produtos premium</div>
+        <div class="why-text">Utilizamos apenas marcas selecionadas, com fórmulas que respeitam e nutrem o teu cabelo.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M8 20l8 8 16-16"/>
+        </svg>
+        <div class="why-title">Satisfação garantida</div>
+        <div class="why-text">Se não ficares satisfeito, fazemos de novo sem custo adicional. A tua felicidade é prioridade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ BARBERS ═══════════════════════════════ -->
+<section id="barbers">
+  <div class="container">
+    <div class="text-center">
+      <div class="divider"><div class="divider-icon">✦</div></div>
+      <span class="section-label">A nossa equipa</span>
+      <h2 class="section-title reveal">Os nossos barbeiros</h2>
+      <p class="section-subtitle reveal">Cada membro da equipa é um artista dedicado a transformar o teu visual.</p>
+    </div>
+    <div class="barbers-grid">
+      <div class="barber-card reveal">
+        <div class="barber-avatar" style="background: linear-gradient(135deg,#c9a84c,#8b5e1a)">CS</div>
+        <div class="barber-name">Carlos Silva</div>
+        <div class="barber-specialty">Cortes Clássicos</div>
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+      </div>
+      <div class="barber-card reveal reveal-delay-1">
+        <div class="barber-avatar" style="background: linear-gradient(135deg,#6b8c5a,#3d5e30)">MS</div>
+        <div class="barber-name">Miguel Santos</div>
+        <div class="barber-specialty">Degradês</div>
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+      </div>
+      <div class="barber-card reveal reveal-delay-2">
+        <div class="barber-avatar" style="background: linear-gradient(135deg,#5a7a8c,#2d4d5e)">JF</div>
+        <div class="barber-name">João Ferreira</div>
+        <div class="barber-specialty">Barba & Estilo</div>
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+        </div>
+      </div>
+      <div class="barber-card reveal reveal-delay-3">
+        <div class="barber-avatar" style="background: linear-gradient(135deg,#8c5a7a,#5e2d4d)">AC</div>
+        <div class="barber-name">André Costa</div>
+        <div class="barber-specialty">Tratamentos</div>
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TESTIMONIALS ═══════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">O que dizem de nós</span>
+      <h2 class="section-title reveal">Avaliações dos clientes</h2>
+      <p class="section-subtitle reveal">A opinião honesta de quem confia em nós para o seu visual.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote">"</span>
+        <p class="testimonial-text">O melhor sítio em Lisboa para um corte a sério. O Carlos entende exatamente o que quero sem eu precisar de explicar muito. Saio sempre com o visual que tenho na cabeça.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg,#c9a84c,#8b5e1a)">RP</div>
+          <div>
+            <div class="testimonial-name">Ricardo Pereira</div>
+            <div class="testimonial-meta">Cliente há 3 anos · <span style="color:var(--gold)">★★★★★</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <span class="testimonial-quote">"</span>
+        <p class="testimonial-text">Vim pela primeira vez por recomendação de um amigo e fiquei rendido. O ambiente é diferente, os barbeiros são profissionais de verdade. O Pacote Premium vale muito o preço.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg,#5a7a8c,#2d4d5e)">DM</div>
+          <div>
+            <div class="testimonial-name">Diogo Martins</div>
+            <div class="testimonial-meta">Cliente há 1 ano · <span style="color:var(--gold)">★★★★★</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <span class="testimonial-quote">"</span>
+        <p class="testimonial-text">Adoro o sistema de agendamento online, é muito prático. E a barbearia em si é impecável. O Miguel faz degradês incríveis, já trouxe dois amigos que ficaram igualmente satisfeitos.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg,#6b8c5a,#3d5e30)">TB</div>
+          <div>
+            <div class="testimonial-name">Tiago Barbosa</div>
+            <div class="testimonial-meta">Cliente há 2 anos · <span style="color:var(--gold)">★★★★★</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ BOOKING ═══════════════════════════════ -->
+<section id="booking" style="background:var(--bg2)">
+  <div class="container">
+    <div class="booking-wrap">
+      <div class="booking-info reveal">
+        <span class="section-label">Agenda online</span>
+        <h2>Marca a tua <em style="font-style:italic;color:var(--gold)">visita</em></h2>
+        <p>Escolhe o serviço, o barbeiro e o horário que te convém. O teu agendamento fica confirmado em segundos, sem esperas nem chamadas.</p>
+        <div class="booking-contact">
+          <div class="contact-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rua da Carioca, 142, 1100-000 Lisboa
+          </div>
+          <div class="contact-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +351 21 234 5678
+          </div>
+          <div class="contact-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            geral@barberandco.pt
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-form reveal reveal-delay-1">
+        <form id="bookingForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo *</label>
+              <input type="text" id="f-name" placeholder="João Silva">
+              <div class="error-msg">Por favor insere o teu nome</div>
+            </div>
+            <div class="form-group">
+              <label>Telemóvel *</label>
+              <input type="tel" id="f-phone" placeholder="912 345 678">
+              <div class="error-msg">Insere um número válido</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Serviço *</label>
+              <select id="f-service">
+                <option value="">Selecionar serviço</option>
+                <option value="Corte Clássico — €15">Corte Clássico — €15</option>
+                <option value="Corte + Barba — €25">Corte + Barba — €25</option>
+                <option value="Degradê — €18">Degradê — €18</option>
+                <option value="Barba Completa — €12">Barba Completa — €12</option>
+                <option value="Tratamento Capilar — €30">Tratamento Capilar — €30</option>
+                <option value="Pacote Premium — €45">Pacote Premium — €45</option>
+              </select>
+              <div class="error-msg">Seleciona um serviço</div>
+            </div>
+            <div class="form-group">
+              <label>Barbeiro *</label>
+              <select id="f-barber">
+                <option value="">Selecionar barbeiro</option>
+                <option value="Carlos Silva">Carlos Silva</option>
+                <option value="Miguel Santos">Miguel Santos</option>
+                <option value="João Ferreira">João Ferreira</option>
+                <option value="André Costa">André Costa</option>
+              </select>
+              <div class="error-msg">Seleciona um barbeiro</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Data *</label>
+
+            <div class="input-with-icon">
+              <input type="text" id="f-date" placeholder="dd/mm/aaaa">
+              <button type="button" id="calendar-btn">📅</button>
+            </div>
+
+            <div class="error-msg" id="date-error">
+              Seleciona uma data válida (dias úteis)
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Horário *</label>
+            <div class="time-slots" id="timeSlots"></div>
+            <div class="error-msg" id="time-error" style="display:none">Seleciona um horário</div>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            Confirmar agendamento
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Barber<span>&</span>Co</div>
+        <p class="footer-desc">A barbearia premium de referência em Lisboa. Arte, estilo e tradição num só lugar, desde 2016.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Navegação</div>
+        <ul class="footer-list">
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#barbers">Barbeiros</a></li>
+          <li><a href="#testimonials">Avaliações</a></li>
+          <li><a href="#booking">Agendar</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Horários</div>
+        <div class="footer-schedule">
+          <div class="schedule-item"><span>Seg — Sex</span><span>09:00–19:00</span></div>
+          <div class="schedule-item"><span>Sábado</span><span>09:00–17:00</span></div>
+          <div class="schedule-item"><span>Domingo</span><span>Encerrado</span></div>
+          <div class="schedule-item"><span>Feriados</span><span>Encerrado</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Contacto</div>
+        <ul class="footer-list">
+          <li>Rua Augusta, 142</li>
+          <li>1100-053 Lisboa</li>
+          <li style="margin-top:0.5rem"><a href="tel:+351212345678">+351 21 234 5678</a></li>
+          <li><a href="mailto:geral@barberandco.pt">geral@barberandco.pt</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Barber&Co</span>. Todos os direitos reservados.</p>
+      <p style="font-size:0.72rem;color:var(--muted)">Feito com <span>♥</span> em Lisboa</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ MODAL ═══════════════════════════════ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-x" id="modalClose">✕</button>
+    <div class="modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h3>Agendamento confirmado!</h3>
+    <p>O teu agendamento foi registado com sucesso. Até breve!</p>
+    <div class="modal-summary" id="modalSummary"></div>
+    <button class="modal-close" id="modalCloseBtn">Perfeito, obrigado!</button>
+  </div>
+</div>
+
+<script src="/assets/js/script.js"></script>
+</body>
+</html>
