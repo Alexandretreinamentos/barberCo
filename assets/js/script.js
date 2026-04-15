@@ -143,8 +143,8 @@ const datePicker = flatpickr('#f-date', {
   allowInput:  true,
   minDate:     'today',
   disable: [
-    // Bloquear fins de semana diretamente no calendário
-    date => date.getDay() === 0 || date.getDay() === 6,
+    // Bloquear apenas domingos diretamente no calendário
+    date => date.getDay() === 0,
   ],
   onChange(selectedDates, dateStr) {
     if (!selectedDates.length) return;
@@ -179,9 +179,9 @@ function handleDateSelected(dateObj, dateStr) {
   }
 
   const dow = dateObj.getDay();
-  if (dow === 0 || dow === 6) {
+  if (dow === 0) {
     grp.classList.add('error');
-    err.textContent = 'Só atendemos dias úteis (Seg–Sex)';
+    err.textContent = 'Não atendemos aos domingos';
     dateInput.value = '';
     datePicker.clear();
     return;
@@ -251,9 +251,9 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   if (!dateObj) {
     dateGrp.classList.add('error');
     dateErr.textContent = 'Formato: dd/mm/aaaa';
-  } else if (dateObj.getDay() === 0 || dateObj.getDay() === 6) {
+  } else if (dateObj.getDay() === 0) {
     dateGrp.classList.add('error');
-    dateErr.textContent = 'Só atendemos dias úteis (Seg–Sex)';
+    dateErr.textContent = 'Não atendemos aos domingos';
   } else {
     dateGrp.classList.remove('error');
     v5 = true;
