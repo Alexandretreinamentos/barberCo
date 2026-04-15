@@ -221,7 +221,7 @@ function isPhoneValid(v) {
 }
 
 /* ─── SUBMIT ─────────────────────────────────────────────── */
-const WORKER_URL = 'https://rececaoclientes.barberco.workers.dev';
+const WORKER_URL = 'https://rececaoclientes.barberco.workers.dev/';
 
 document.getElementById('bookingForm').addEventListener('submit', async function (e) {
   e.preventDefault();
@@ -277,9 +277,16 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 
   try {
     const res = await fetch(WORKER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, service, barber, date, time: selectedTime }),
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        service,
+        barber,
+        date,
+        time: selectedTime,
+      }),
     });
 
     if (!res.ok) {
@@ -288,8 +295,10 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     }
   } catch (err) {
     btn.disabled = false;
-    btn.innerHTML = 'Confirmar agendamento';
-    alert(`Erro ao enviar o agendamento: ${err.message}.\nTenta novamente ou liga-nos.`);
+    btn.innerHTML = "Confirmar agendamento";
+    alert(
+      `Erro ao enviar o agendamento: ${err.message}.\nTenta novamente ou liga-nos.`,
+    );
     return;
   }
 
