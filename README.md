@@ -88,9 +88,8 @@ Site_Barbeiro/
 ## 🎯 Roadmap
 
 - [x] Landing page frontend completa
-- [ ] Backend PHP (integração com Worker/DB)
+- [ ] Backend (integração com Worker/DB)
 - [ ] Autenticação barbeiros (dashboard)
-- [ ] Pagamentos Stripe/MBWay
 - [ ] Admin panel (gerir horários/equipa)
 - [ ] SEO + PWA
 - [ ] API WhatsApp confirmações
