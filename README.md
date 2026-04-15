@@ -78,7 +78,6 @@ Google Fonts
 ```
 Site_Barbeiro/
 ├── index.html           # Landing page completa
-├── favicon.ico          # Ícone
 └── assets/
     ├── css/
     │   └── global.css   # CSS variables + responsive
