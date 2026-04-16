@@ -94,27 +94,6 @@ Site_Barbeiro/
 - [ ] SEO + PWA
 - [ ] API WhatsApp confirmações
 
-## 🤝 Contribuições
-
-1. Fork o projeto
-2. Crie branch `feat/nova-funcionalidade`
-3. Commit com mensagens claras
-4. Pull Request para `main`
-
-**Issues bem-vindas!** 🪛
-
-## 📞 Contacto
-
-```
-Barber & Co
-Rua da Carioca, 142
-1100-000 Lisboa
-+351 21 234 5678
-geral@barberandco.pt
-
-Instagram • Facebook • TikTok
-```
-
 ---
 
 **© 2026 Barber&amp;Co. Feito com ♥ em Lisboa**  
