@@ -111,6 +111,9 @@ async function generateTimeSlots(selectedDate, dateStr) {
   // Gerar todos possíveis slots
   const allSlots = [];
   for (let h = 9; h <= 18; h++) {
+    // Skip almoço 13:00-14:00 (13:00, 13:30)
+    if (h === 13) continue;
+    
     for (let m = 0; m < 60; m += 30) {
       // 18:30 não existe — paramos às 18:00
       if (h === 18 && m === 30) break;
