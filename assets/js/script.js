@@ -93,45 +93,93 @@ document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el))
 let selectedTime = '';
 const timeContainer = document.getElementById('timeSlots');
 
-function generateTimeSlots(selectedDate) {
-  timeContainer.innerHTML = '';
+async function generateTimeSlots(selectedDate, dateStr) {
+  timeContainer.innerHTML = `
+    <div class="time-loading">
+      Verificando horários disponíveis...
+    </div>
+  `;
   selectedTime = ''; // reset seleção ao mudar de data
 
   const now = new Date();
   const isToday = selectedDate instanceof Date &&
     selectedDate.toDateString() === now.toDateString();
 
+  // Fetch horários ocupados
+  const occupiedTimes = await fetchOccupiedTimes(dateStr);
+
+  // Gerar todos possíveis slots
+  const allSlots = [];
   for (let h = 9; h <= 18; h++) {
     for (let m = 0; m < 60; m += 30) {
       // 18:30 não existe — paramos às 18:00
       if (h === 18 && m === 30) break;
 
-      const timeStr  = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      const timeStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
       const slotTime = new Date(selectedDate);
       slotTime.setHours(h, m, 0, 0);
 
       const isPast = isToday && slotTime <= now;
+      const isOccupied = occupiedTimes.has(timeStr);
 
-      const slot = document.createElement('div');
-      slot.className   = 'time-slot' + (isPast ? ' disabled' : '');
-      slot.dataset.time = timeStr;
-      slot.textContent  = timeStr;
-      if (isPast) {
-        slot.setAttribute('aria-disabled', 'true');
-        slot.setAttribute('title', 'Horário já passou');
-      }
+      // Skip se passado OU ocupado
+      if (isPast || isOccupied) continue;
 
-      slot.addEventListener('click', () => {
-        if (slot.classList.contains('disabled')) return;
-        timeContainer.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-        slot.classList.add('selected');
-        selectedTime = timeStr;
-        document.getElementById('time-error').style.display = 'none';
-      });
-
-      timeContainer.appendChild(slot);
+      allSlots.push(timeStr);
     }
   }
+
+  // Se não há slots disponíveis
+  if (allSlots.length === 0) {
+    timeContainer.innerHTML = `
+      <div class="time-loading" style="padding:3rem">
+        <svg style="width:28px;height:28px;color:var(--gold)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+        <div style="margin-top:0.5rem">Sem horários disponíveis</div>
+        <div style="font-size:0.8rem;color:var(--muted);margin-top:0.25rem">
+          Tenta outra data
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // Renderizar slots disponíveis
+  timeContainer.innerHTML = '';
+  allSlots.forEach(timeStr => {
+    const slotTime = new Date(selectedDate);
+    const [h, m] = timeStr.split(':').map(Number);
+    slotTime.setHours(h, m, 0, 0);
+
+    const slot = document.createElement('div');
+    slot.className = 'time-slot';
+    slot.dataset.time = timeStr;
+    slot.textContent = timeStr;
+
+    // Tooltip para slots poucos disponíveis (melhor UX)
+    if (allSlots.length <= 3) {
+      slot.dataset.tooltip = 'Poucos horários restantes!';
+    }
+
+    slot.addEventListener('click', () => {
+      if (slot.classList.contains('selected')) return;
+      timeContainer.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+      slot.classList.add('selected');
+      selectedTime = timeStr;
+      document.getElementById('time-error').style.display = 'none';
+    });
+
+    timeContainer.appendChild(slot);
+  });
+
+  // Info de disponibilidade
+  const info = document.createElement('div');
+  info.className = 'slots-info';
+  info.textContent = `${allSlots.length} horário${allSlots.length > 1 ? 's' : ''} disponível${allSlots.length > 1 ? 's' : ''}`;
+  timeContainer.appendChild(info);
 }
 
 /* ─── FLATPICKR ──────────────────────────────────────────── */
@@ -188,7 +236,7 @@ function handleDateSelected(dateObj, dateStr) {
   }
 
   grp.classList.remove('error');
-  generateTimeSlots(dateObj);
+  generateTimeSlots(dateObj, dateStr);
 }
 
 /* ─── INPUT MANUAL DE DATA (auto-formatação) ─────────────── */
@@ -201,8 +249,10 @@ dateInput.addEventListener('input', e => {
 
   if (raw.length === 10) {
     const d = parseDatePT(raw);
-    handleDateSelected(d, raw);
-    if (d) datePicker.setDate(d, false); // sincronizar flatpickr sem disparar onChange
+    if (d) {
+      datePicker.setDate(d, false); // sincronizar sem trigger
+      handleDateSelected(d, raw);
+    }
   }
 });
 
@@ -222,6 +272,45 @@ function isPhoneValid(v) {
 
 /* ─── SUBMIT ─────────────────────────────────────────────── */
 const WORKER_URL = 'https://rececaoclientes.barberco.workers.dev/';
+const CONTATOS_URL = 'https://consultar.barberco.workers.dev/contatos';
+
+/**
+ * Fetch horários ocupados para uma data específica (dd/mm/yyyy)
+ * @param {string} dateStr - Data no formato pt-BR
+ * @returns {Promise<Set<string>>} Set de horários ocupados ['09:00', '09:30', ...]
+ */
+async function fetchOccupiedTimes(dateStr) {
+  try {
+    // Assumindo que API aceita ?data=dd/mm/yyyy ou /contatos?data=...
+    // Ajustar query param conforme API real
+    const url = `${CONTATOS_URL}?data=${encodeURIComponent(dateStr)}`;
+    const res = await fetch(url);
+    
+    if (!res.ok) {
+      console.warn('API contatos falhou:', res.status);
+      return new Set();
+    }
+    
+    const data = await res.json();
+    const occupied = new Set();
+    
+    // Parse JSON - suporta array de objetos ou direto array de strings
+    if (Array.isArray(data)) {
+      data.forEach(item => {
+        if (item.horario || item.time) {
+          const time = (item.horario || item.time).trim();
+          if (/^\d{2}:\d{2}$/.test(time)) occupied.add(time);
+        }
+      });
+    }
+    
+    console.log(`Horários ocupados em ${dateStr}:`, occupied.size, Array.from(occupied));
+    return occupied;
+  } catch (err) {
+    console.error('Erro ao buscar horários ocupados:', err);
+    return new Set();
+  }
+}
 
 document.getElementById('bookingForm').addEventListener('submit', async function (e) {
   e.preventDefault();

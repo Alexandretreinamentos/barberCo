@@ -681,10 +681,71 @@
     }
 
   /* Time slots */
-  .time-slots { 
+.time-slots { 
         display: grid;
-        grid-template-columns: repeat(6, 1fr); /* 6 colunas iguais */
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); /* Responsivo */
+        gap: 12px;
+        margin-top: 0.5rem;
+    }
+
+    .time-loading {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 2rem;
+        color: var(--gold);
+        font-size: 0.85rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .time-loading::before {
+        content: '';
+        width: 24px;
+        height: 24px;
+        border: 2px solid rgba(201,168,76,0.3);
+        border-top-color: var(--gold);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    .time-slot.occupied {
+        background: var(--bg3);
+        color: var(--muted);
+        border-color: rgba(122,117,110,0.4);
+        position: relative;
+        cursor: help;
+    }
+    .time-slot.occupied::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--bg);
+        color: var(--text);
+        padding: 0.4rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+        margin-bottom: 4px;
+    }
+    .time-slot.occupied:hover::after {
+        opacity: 1;
+    }
+
+    .slots-info {
+        grid-column: 1 / -1;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--gold);
+        font-weight: 500;
+        padding: 0.75rem 0;
+        border-top: 1px solid var(--border);
+        margin-top: 1rem;
     }
 
   .time-slot {

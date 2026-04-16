@@ -88,7 +88,7 @@ Site_Barbeiro/
 ## 🎯 Roadmap
 
 - [x] Landing page frontend completa
-- [ ] Backend (integração com Worker/DB)
+- [x] Backend (integração com Worker/DB)
 - [ ] Autenticação barbeiros (dashboard)
 - [ ] Admin panel (gerir horários/equipa)
 - [ ] SEO + PWA
